@@ -17,7 +17,7 @@ func TestCoverMaxPoint(t *testing.T) {
 	   		arr := generateArray(len, max)
 	   		ans1 := maxPoint1(arr, L)
 	   		ans2 := maxPoint2(arr, L)
-	   		ans3 := test(arr, L)
+	   		ans3 := utils(arr, L)
 	   		if ans1 != ans2 || ans2 != ans3 {
 	   			fmt.Println("oops!")
 	   			break
