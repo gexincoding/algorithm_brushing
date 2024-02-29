@@ -11,13 +11,17 @@ func binaryTreePaths(root *TreeNode) []string {
 
 func dfs(res *[][]int, cur *[]int, node *TreeNode) {
 	if node == nil {
-		var curAns []int
-		copy(curAns, *cur)
-		*res = append(*res, curAns)
+		return
 	}
 	*cur = append(*cur, node.Val)
-	dfs(res, cur, node.Left)
-	dfs(res, cur, node.Right)
+	if isLeaf(node) {
+		curAns := make([]int, len(*cur))
+		copy(curAns, *cur)
+		*res = append(*res, curAns)
+	} else {
+		dfs(res, cur, node.Left)
+		dfs(res, cur, node.Right)
+	}
 	*cur = (*cur)[:len(*cur)-1]
 }
 
@@ -32,4 +36,8 @@ func write(dfsAns [][]int) []string {
 		res = append(res, str)
 	}
 	return res
+}
+
+func isLeaf(node *TreeNode) bool {
+	return node != nil && node.Left == nil && node.Right == nil
 }
