@@ -1,9 +1,15 @@
-package _106_construct_binary_tree_from_inorder_and_postorder_traversal
+package _098_validate_binary_search_tree
 
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
+}
+
+func NewNode(val int) *TreeNode {
+	return &TreeNode{
+		Val: val,
+	}
 }
 
 func CreateTree(treeArr []int) *TreeNode {

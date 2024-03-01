@@ -1,9 +1,15 @@
-package _106_construct_binary_tree_from_inorder_and_postorder_traversal
+package _530_minimum_absolute_difference_in_bst
 
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
+}
+
+func NewNode(val int) *TreeNode {
+	return &TreeNode{
+		Val: val,
+	}
 }
 
 func CreateTree(treeArr []int) *TreeNode {
