@@ -29,11 +29,11 @@ func (unionFind *UnionFind) Union(i, j int) {
 		return
 	}
 	if unionFind.size[fatherI] > unionFind.size[fatherJ] {
-		unionFind.father[j] = i
-		unionFind.size[i] = fatherI + fatherJ
+		unionFind.father[fatherJ] = fatherI
+		unionFind.size[fatherI] = fatherI + fatherJ
 	} else {
-		unionFind.father[i] = j
-		unionFind.size[j] = fatherI + fatherJ
+		unionFind.father[fatherI] = fatherJ
+		unionFind.size[fatherJ] = fatherI + fatherJ
 	}
 	unionFind.sets--
 }

@@ -16,14 +16,13 @@ func minAbsDifference(nums []int, goal int) int {
 	sort.Ints(arrR)
 	for i := 0; i < len(arrL); i++ {
 		target := goal - arrL[i]
-		for j := len(arrR) - 1; j >= 1; j-- {
-			p1 := abs(arrR[j-1] - target)
-			p2 := abs(arrR[j] - target)
-			if p1 <= p2 {
-				res = min(res, p1)
-			} else {
-				break
-			}
+		index := find(arrR, 0, len(arrR)-1, target)
+		if index == -1 {
+			res = min(res, abs(arrR[0]-target))
+		} else if index == len(arrR)-1 {
+			res = min(res, abs(arrR[index]-target))
+		} else {
+			res = min(res, min(abs(arrR[index]-target), abs(arrR[index+1]-target)))
 		}
 	}
 	return res
@@ -49,4 +48,18 @@ func min(a, b int) int {
 		return a
 	}
 	return b
+}
+
+func find(arr []int, l, r int, tar int) int {
+	index := -1
+	for l <= r {
+		m := (l + r) / 2
+		if arr[m] <= tar {
+			index = m
+			l = m + 1
+		} else {
+			r = m - 1
+		}
+	}
+	return index
 }
